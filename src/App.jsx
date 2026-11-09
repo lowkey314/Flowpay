@@ -4,18 +4,19 @@ const accounts = [
   { name: 'Travel', number: '•••• 2261', balance: 6124.9, accent: 'purple' },
 ];
 
-const stats = [
-  { label: 'Total balance', value: '$60,200.32', delta: '+4.8%' },
-  { label: 'Monthly income', value: '$12,420.00', delta: '+1.2%' },
-  { label: 'Monthly spend', value: '$7,630.14', delta: '-2.6%' },
+const quickActions = [
+  { label: 'Send', icon: '↗', tone: 'primary' },
+  { label: 'Top up', icon: '+', tone: 'soft' },
+  { label: 'Bills', icon: '◫', tone: 'soft' },
+  { label: 'Cards', icon: '◌', tone: 'soft' },
 ];
 
 const spendBreakdown = [
-  { label: 'Housing', value: 38, amount: '$1,210', color: 'var(--teal)' },
-  { label: 'Food', value: 22, amount: '$710', color: 'var(--blue)' },
-  { label: 'Travel', value: 18, amount: '$560', color: 'var(--purple)' },
-  { label: 'Bills', value: 14, amount: '$430', color: 'var(--amber)' },
-  { label: 'Other', value: 8, amount: '$248', color: 'var(--slate)' },
+  { label: 'Housing', value: 38, amount: '$1,210', color: '#2dd4bf' },
+  { label: 'Food', value: 22, amount: '$710', color: '#60a5fa' },
+  { label: 'Travel', value: 18, amount: '$560', color: '#a78bfa' },
+  { label: 'Bills', value: 14, amount: '$430', color: '#fbbf24' },
+  { label: 'Other', value: 8, amount: '$248', color: '#94a3b8' },
 ];
 
 const transactions = [
@@ -43,21 +44,23 @@ function App() {
   return (
     <div className="page-shell">
       <aside className="sidebar">
-        <div className="brand-block">
-          <div className="brand-mark">F</div>
-          <div>
-            <div className="eyebrow">Fintech</div>
-            <h1>Flowpay</h1>
+        <div>
+          <div className="brand-block">
+            <div className="brand-mark">F</div>
+            <div>
+              <div className="eyebrow">Fintech</div>
+              <h1>Flowpay</h1>
+            </div>
           </div>
-        </div>
 
-        <nav className="nav">
-          <button className="nav-item active">Overview</button>
-          <button className="nav-item">Accounts</button>
-          <button className="nav-item">Cards</button>
-          <button className="nav-item">Transfers</button>
-          <button className="nav-item">Insights</button>
-        </nav>
+          <nav className="nav">
+            <button className="nav-item active">Overview</button>
+            <button className="nav-item">Accounts</button>
+            <button className="nav-item">Cards</button>
+            <button className="nav-item">Transfers</button>
+            <button className="nav-item">Insights</button>
+          </nav>
+        </div>
 
         <div className="sidebar-card">
           <span className="pill neutral">Cash flow</span>
@@ -80,12 +83,29 @@ function App() {
         </header>
 
         <section className="stats-grid">
-          {stats.map((stat) => (
-            <article key={stat.label} className="stat-card">
-              <span>{stat.label}</span>
-              <strong>{stat.value}</strong>
-              <em>{stat.delta}</em>
-            </article>
+          <article className="stat-card">
+            <span>Total balance</span>
+            <strong>{formatMoney(60200.32)}</strong>
+            <em>+4.8%</em>
+          </article>
+          <article className="stat-card">
+            <span>Monthly income</span>
+            <strong>{formatMoney(12420)}</strong>
+            <em>+1.2%</em>
+          </article>
+          <article className="stat-card">
+            <span>Monthly spend</span>
+            <strong>{formatMoney(7630.14)}</strong>
+            <em>-2.6%</em>
+          </article>
+        </section>
+
+        <section className="quick-actions" aria-label="Quick actions">
+          {quickActions.map((action) => (
+            <button key={action.label} className={`action-btn ${action.tone}`}>
+              <span>{action.icon}</span>
+              {action.label}
+            </button>
           ))}
         </section>
 
@@ -189,3 +209,4 @@ function App() {
 }
 
 export default App;
+
