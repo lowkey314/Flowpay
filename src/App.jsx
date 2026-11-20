@@ -1,3 +1,5 @@
+const brandName = 'Kinetic Capital Pay LLC';
+
 const accounts = [
   { name: 'Checking', number: '•••• 4832', balance: 12845.24, accent: 'blue' },
   { name: 'Savings', number: '•••• 9014', balance: 48230.18, accent: 'green' },
@@ -46,14 +48,14 @@ function App() {
       <aside className="sidebar">
         <div>
           <div className="brand-block">
-            <div className="brand-mark">F</div>
+            <div className="brand-mark">KC</div>
             <div>
-              <div className="eyebrow">Fintech</div>
-              <h1>Flowpay</h1>
+              <div className="eyebrow">Private banking</div>
+              <h1>Kinetic</h1>
             </div>
           </div>
 
-          <nav className="nav">
+          <nav className="nav" aria-label="Primary navigation">
             <button className="nav-item active">Overview</button>
             <button className="nav-item">Accounts</button>
             <button className="nav-item">Cards</button>
@@ -82,7 +84,7 @@ function App() {
           </div>
         </header>
 
-        <section className="stats-grid">
+        <section className="stats-grid" aria-label="Account summary">
           <article className="stat-card">
             <span>Total balance</span>
             <strong>{formatMoney(60200.32)}</strong>
@@ -122,13 +124,13 @@ function App() {
 
               <div className="account-list">
                 {accounts.map((account) => (
-                  <div key={account.name} className={`account-card ${account.accent}`}>
+                  <button key={account.name} className={`account-card ${account.accent}`}>
                     <div>
                       <small>{account.name}</small>
                       <strong>{account.number}</strong>
                     </div>
                     <span>{formatMoney(account.balance)}</span>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -203,10 +205,14 @@ function App() {
             </div>
           </div>
         </section>
+
+        <footer className="footer">
+          <span>{brandName}</span>
+          <span>Demo interface • Not a real banking service</span>
+        </footer>
       </main>
     </div>
   );
 }
 
 export default App;
-
